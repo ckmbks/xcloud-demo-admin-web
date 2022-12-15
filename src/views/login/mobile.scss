@@ -1,0 +1,57 @@
+@import '../../assets/styles/golbal.scss';
+// html{
+//   font-size: calc(10000vw / 750);
+// }
+
+$rpx:1rem / 100;
+body{
+  font-size: 14*$rpx;
+}
+
+
+.mobile_page{
+  background: #F7FAFF;
+  width: 100vw;
+  overflow-x: hidden;
+  min-height: 100vh;
+  @for $i from 12 through 60
+  {
+    .fs-#{$i}
+    {
+        font-size:($rpx * $i);
+    }
+  }
+}
+@for $i from 12 through 60
+{
+  .mobile_page.fs-#{$i}
+  {
+      font-size:($rpx * $i);
+  }
+}
+.xm_btn {
+  width: 100%;
+  color: #fff;
+  height: 98 * $rpx;
+  line-height: 98 * $rpx;
+  background: linear-gradient(117deg, #3967f4 0%, #894dfc 100%);
+  box-shadow: 0 * $rpx 8 * $rpx 22 * $rpx 0 * $rpx rgba(120, 111, 200, 0.55);
+  border-radius: 999vw;
+  outline: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+
+@media screen and (min-width: 600px){
+  // html{
+  //   font-size: calc(10000vh / 1334);
+  // }
+  .mobile_page{
+    // padding-left: calc(50vw - 28vh);
+    // padding-right: calc(50vw - 28vh);
+    padding-left: calc(50vw - 28vh);
+    padding-right: calc(50vw - 28vh);
+  }
+}

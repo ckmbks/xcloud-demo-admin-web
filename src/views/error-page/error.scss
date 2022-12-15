@@ -1,0 +1,81 @@
+$rpx: 100vw / 1920;
+.page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.statu_box {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+  .statu_logo {
+    width: 549 * $rpx;
+  }
+  .statu_info {
+    text-align: center;
+    line-height: 1.4;
+    padding-left: 127 * $rpx;
+    .statu_code {
+      font-size: 400 * $rpx;
+      line-height: 1.1;
+      // color: rgba(187, 28, 44, 0.2);
+    }
+    .tips_strong {
+      font-size: 26 * $rpx;
+      color: rgba(51, 51, 51, 1);
+      margin-bottom: 21 * $rpx;
+    }
+    .tips_sub {
+      font-size: 22 * $rpx;
+      color: rgba(102, 102, 102, 1);
+      margin-bottom: 45 * $rpx;
+    }
+    .home_btn {
+      display: inline-block;
+      margin: 0 auto;
+      // color: #bb1c2c;
+      font-size: 14 * $rpx;
+      width: 200 * $rpx;
+      height: 40 * $rpx;
+      line-height: 40 * $rpx;
+      border-radius: 8 * $rpx;
+      // border: 1 * $rpx solid rgba(187, 28, 44, 1);
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .statu_box {
+    flex-wrap: wrap;
+    text-align: center;
+    width: 100%;
+    font-size: 100vw;
+    .statu_logo {
+      width: 50%;
+      height: auto;
+      margin: 0 auto;
+    }
+    .statu_info {
+      width: 100%;
+      padding: 0;
+      .tips_strong{
+        font-size: 13px;
+      }
+      .home_btn{
+        font-size: 14px;
+        width: 200px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 8px;
+      }
+    }
+
+  }
+}
