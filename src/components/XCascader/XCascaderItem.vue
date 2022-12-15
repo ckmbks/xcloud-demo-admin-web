@@ -1,49 +1,31 @@
 <template>
   <div class="d-flex">
     <v-list dense class="py-0 area-list">
-      <v-list-item-group
-        :value="activeValue"
-        :mandatory="activeValue !== ''"
-        color="primary"
-      >
-        <template v-for="item in items">
-          <v-list-item
-            :value="item[defaultProps.value]"
-            :disabled="item[defaultProps.disabled]"
-            @click="hanleChecked(item)"
-            :key="item[defaultProps.value]"
-          >
-            <v-list-item-title>{{
+      <v-list-item-group :value="activeValue" :mandatory="activeValue !== ''" color="primary">
+        <v-list-item :value="item[defaultProps.value]" :disabled="item[defaultProps.disabled]"
+          @click="hanleChecked(item)" v-for="item in items" :key="item[defaultProps.value]">
+          <v-list-item-title>{{
               item[defaultProps.label]
-            }}</v-list-item-title>
-            <v-list-item-icon
-              v-if="
-                defaultProps.lazy
-                  ? item.leaf || activeItems.length > 0
-                  : item[defaultProps.children] &&
-                    item[defaultProps.children].length > 0
-              "
-            >
-              <v-icon>mdi-chevron-right</v-icon>
-            </v-list-item-icon>
-          </v-list-item>
-        </template>
+          }}</v-list-item-title>
+          <v-list-item-icon v-if="
+            defaultProps.lazy
+              ? item.leaf || activeItems.length > 0
+              : item[defaultProps.children] &&
+              item[defaultProps.children].length > 0
+          ">
+            <v-icon>mdi-chevron-right</v-icon>
+          </v-list-item-icon>
+        </v-list-item>
       </v-list-item-group>
     </v-list>
-    <x-cascader-item
-      :props="defaultProps"
-      :defaultValue="defaultValues"
-      v-model="childrenValue"
-      v-if="
-        defaultProps.lazy
-          ? activeItems.length > 0
-          : activeItems[defaultProps.children] &&
-            activeItems[defaultProps.children].length > 0
-      "
-      :items="
-        defaultProps.lazy ? activeItems : activeItems[defaultProps.children]
-      "
-    ></x-cascader-item>
+    <x-cascader-item :props="defaultProps" :defaultValue="defaultValues" v-model="childrenValue" v-if="
+      defaultProps.lazy
+        ? activeItems.length > 0
+        : activeItems[defaultProps.children] &&
+        activeItems[defaultProps.children].length > 0
+    " :items="
+  defaultProps.lazy ? activeItems : activeItems[defaultProps.children]
+"></x-cascader-item>
   </div>
 </template>
 <script lang="ts">
@@ -65,7 +47,7 @@ export default class XCascaderItem extends Vue {
   @Prop({ default: '' })
   defaultValue: any
 
-  @Prop({ default: () => {} })
+  @Prop({ default: () => { } })
   props: any
 
   get defaultProps() {
@@ -76,7 +58,7 @@ export default class XCascaderItem extends Vue {
       disabled: 'disabled',
       leaf: 'leaf',
       lazy: false,
-      lazyLoad: () => {},
+      lazyLoad: () => { },
       ...this.props
     }
   }
@@ -160,4 +142,6 @@ export default class XCascaderItem extends Vue {
   }
 }
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>

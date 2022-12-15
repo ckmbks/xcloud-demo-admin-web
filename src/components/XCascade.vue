@@ -1,32 +1,12 @@
 <template>
-  <v-menu
-    :close-on-content-click="closeOnContentClick"
-    :value="false"
-    v-model="isShowMenu"
-    offset-y
-    :nudge-bottom="!isHideDetails ? -24 : 4"
-    max-width="95vw"
-    :offset-x="$vuetify.breakpoint.xs"
-    :left="$vuetify.breakpoint.xs"
-    :disabled="isReadonly"
-  >
+  <v-menu :close-on-content-click="closeOnContentClick" :value="false" v-model="isShowMenu" offset-y
+    :nudge-bottom="!isHideDetails ? -24 : 4" max-width="95vw" :offset-x="$vuetify.breakpoint.xs"
+    :left="$vuetify.breakpoint.xs" :disabled="isReadonly">
     <template v-slot:activator="{ on, attrs }">
-      <v-text-field
-        readonly
-        :hide-details="hideDetails"
-        outlined
-        dense
-        v-model="model"
-        :label="label"
-        append-icon="arrow_drop_down"
-        @focus="initItems"
-        :loading="loading"
-        v-bind="attrs"
-        v-on="on"
-        @click:append="isShowMenu = true"
-        :rules="isRequired ? [validateRules.required] : []"
-        :clearable="isClearable && !isReadonly"
-      >
+      <v-text-field readonly :hide-details="hideDetails" outlined dense v-model="model" :label="label"
+        append-icon="arrow_drop_down" @focus="initItems" :loading="loading" v-bind="attrs" v-on="on"
+        @click:append="isShowMenu = true" :rules="isRequired ? [validateRules.required] : []"
+        :clearable="isClearable && !isReadonly">
         <template v-slot:prepend-inner>
           <span v-if="isRequired" class="require-star lh-30">*</span>
           <slot name="prepend-inner" />
@@ -36,62 +16,35 @@
     <v-card>
       <v-card-text class="pa-0 d-flex">
         <v-list dense class="py-0 area-list">
-          <v-list-item-group
-            :mandatory="selectedFirstItemIndex !== null"
-            v-model="selectedFirstItemIndex"
-            color="primary"
-          >
-            <template v-for="(item, index) in getFirstLevelItems()">
-              <v-list-item @click="selectFirstItem(index)" :key="index">
-                <v-list-item-title v-text="item[itemText]"></v-list-item-title>
-                <v-list-item-icon v-if="item.isParent">
-                  <v-icon>mdi-chevron-right</v-icon>
-                </v-list-item-icon>
-              </v-list-item>
-            </template>
+          <v-list-item-group :mandatory="selectedFirstItemIndex !== null" v-model="selectedFirstItemIndex"
+            color="primary">
+            <v-list-item @click="selectFirstItem(index)" v-for="(item, index) in getFirstLevelItems()" :key="index">
+              <v-list-item-title v-text="item[itemText]"></v-list-item-title>
+              <v-list-item-icon v-if="item.isParent">
+                <v-icon>mdi-chevron-right</v-icon>
+              </v-list-item-icon>
+            </v-list-item>
           </v-list-item-group>
         </v-list>
-        <v-list
-          v-if="selectedFirstItem && selectedFirstItem.isParent"
-          dense
-          class="py-0 area-list"
-        >
-          <v-list-item-group
-            :mandatory="selectedSecondItemIndex !== null"
-            v-model="selectedSecondItemIndex"
-            color="primary"
-          >
-            <template
-              v-for="(item, index) in getSubItems(selectedFirstItem[itemValue])"
-            >
-              <v-list-item @click="selectSecondItem(index)" :key="index">
-                <v-list-item-title v-text="item[itemText]"></v-list-item-title>
-                <v-list-item-icon v-if="item.isParent === true">
-                  <v-icon>mdi-chevron-right</v-icon>
-                </v-list-item-icon>
-              </v-list-item>
-            </template>
+        <v-list v-if="selectedFirstItem && selectedFirstItem.isParent" dense class="py-0 area-list">
+          <v-list-item-group :mandatory="selectedSecondItemIndex !== null" v-model="selectedSecondItemIndex"
+            color="primary">
+            <v-list-item @click="selectSecondItem(index)"
+              v-for="(item, index) in getSubItems(selectedFirstItem[itemValue])" :key="index">
+              <v-list-item-title v-text="item[itemText]"></v-list-item-title>
+              <v-list-item-icon v-if="item.isParent === true">
+                <v-icon>mdi-chevron-right</v-icon>
+              </v-list-item-icon>
+            </v-list-item>
           </v-list-item-group>
         </v-list>
-        <v-list
-          v-if="selectedSecondItem !== null && selectedSecondItem.isParent"
-          dense
-          class="py-0 area-list"
-        >
-          <v-list-item-group
-            :mandatory="selectedThirdItemIndex !== null"
-            v-model="selectedThirdItemIndex"
-            color="primary"
-          >
-            <template
-              v-for="(item, index) in getSubItems(
-                selectedSecondItem[itemValue]
-              )"
-            >
-              <v-list-item @click="selectThirdItem(index)" :key="index">
-                <v-list-item-title v-text="item[itemText]"></v-list-item-title>
-              </v-list-item>
-            </template>
+        <v-list v-if="selectedSecondItem !== null && selectedSecondItem.isParent" dense class="py-0 area-list">
+          <v-list-item-group :mandatory="selectedThirdItemIndex !== null" v-model="selectedThirdItemIndex"
+            color="primary">
+            <v-list-item @click="selectThirdItem(index)"
+              v-for="(item, index) in getSubItems(selectedSecondItem[itemValue])" :key="index">
+              <v-list-item-title v-text="item[itemText]"></v-list-item-title>
+            </v-list-item>
           </v-list-item-group>
         </v-list>
       </v-card-text>

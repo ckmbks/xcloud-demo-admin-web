@@ -32,7 +32,6 @@
                 active-class="deep-grey--text text--accent-4"
                 class="pa-0"
                 v-if="!item.read"
-                @click.stop="_checkMessage(item, i)"
               >
                 <template>
                   <v-list-item-content class="d-flex msg-item pt-0 pb-0">

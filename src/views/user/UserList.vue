@@ -44,6 +44,21 @@
             @change="search"
           ></x-autocomplete>
         </x-filter-item>
+                <x-filter-item width="300">
+          <x-area
+            hide-details
+            label="所在地区"
+            actions
+            clearable
+            @change="search"
+            :sync-province.sync="pageParams.province"
+            :sync-province-code.sync="pageParams.provinceCode"
+            :sync-city.sync="pageParams.city"
+            :sync-city-code.sync="pageParams.cityCode"
+            :sync-region.sync="pageParams.region"
+            :sync-region-code.sync="pageParams.regionCode"
+          ></x-area>
+        </x-filter-item>
       </template>
       <template slot="ctrl" slot-scope="scope">
         <v-btn

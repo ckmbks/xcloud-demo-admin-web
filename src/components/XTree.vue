@@ -2,65 +2,28 @@
   <x-page>
     <v-card flat class="ma-6 pa-6" width="1000">
       <v-sheet class="pa-4 primary lighten-2" v-if="showFilter">
-        <v-text-field
-          v-model="search"
-          label="搜索"
-          dark
-          flat
-          solo-inverted
-          hide-details
-          clearable
-          clear-icon="mdi-close-circle-outline"
-        ></v-text-field>
+        <v-text-field v-model="search" label="搜索" dark flat solo-inverted hide-details clearable
+          clear-icon="mdi-close-circle-outline"></v-text-field>
       </v-sheet>
       <!-- selectable 可选 rounded 点击后背景圆角 hoverable 悬停会有效果 dense 紧凑 activatable 可点击 -->
-      <v-treeview
-        :search="search"
-        :filter="filter"
-        v-model="chooseArr"
-        selectable
-        hoverable
-        dense
-        activatable
-        :items="items"
-        :open="openItems"
-        :item-key="itemKey"
-        :item-text="itemText"
-        :item-children="itemChildren"
-      >
+      <v-treeview :search="search" :filter="filter" v-model="chooseArr" selectable hoverable dense activatable
+        :items="items" :open="openItems" :item-key="itemKey" :item-text="itemText" :item-children="itemChildren">
         <!-- expand-icon="mdi-arrow-down-drop-circle-outline" -->
         <template #label="{ item }">
-          <v-text-field
-            v-if="item.edit"
-            outlined
-            dense
-            hide-details
-            v-model="item.name"
-            @blur="editItem(item)"
-            @keyup.enter="editItem(item)"
-          ></v-text-field>
+          <v-text-field v-if="item.edit" outlined dense hide-details v-model="item.name" @blur="editItem(item)"
+            @keyup.enter="editItem(item)"></v-text-field>
           <v-input class="py-2 pl-3" v-else hide-details>{{
-            item.name
+              item.name
           }}</v-input>
         </template>
         <template #append="{ item }">
           <v-row>
             <v-spacer></v-spacer>
-            <v-col
-              v-for="(button, index) in item.btnList"
-              :key="index"
-              cols="1"
-              align="end"
-            >
-              <v-icon v-if="button === 'edit'" @click="editItem(item)"
-                >mdi-square-edit-outline</v-icon
-              >
-              <v-icon v-if="button === 'del'" @click="deleteItem(item)"
-                >mdi-trash-can-outline</v-icon
-              >
-              <v-icon v-if="button === 'add'" @click="addItem(item)"
-                >mdi-plus</v-icon
-              >
+            <v-col v-for="(button, index) in item.btnList" :key="index" cols="1" align="end">
+              <v-icon v-if="button === 'edit'" @click="editItem(item)">mdi-square-edit-outline</v-icon>
+              <v-icon v-if="button === 'del'" @click="deleteItem(item)">mdi-trash-can-outline</v-icon>
+              <v-icon v-if="button === 'add'" @click="addItem(item)">mdi-plus</v-icon>
+            </v-col>
             <v-col cols="3"></v-col>
           </v-row>
         </template>
