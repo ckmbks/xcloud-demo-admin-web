@@ -75,7 +75,7 @@
             ></v-text-field>
             <img
               height="56px"
-              src="msgImg"
+              :src="msgImg"
               alt="验证码"
               @click="_initMsgCode"
             />
